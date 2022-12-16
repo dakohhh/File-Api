@@ -1,6 +1,6 @@
 from typing import Union
 from fastapi import APIRouter, File, Header, UploadFile
-from auth_jwt import decodeToken
+from authentication.auth_jwt import decodeToken
 from starlette.status import HTTP_200_OK
 from func import generate_id
 from response.response import customResponse
@@ -24,7 +24,7 @@ async def upload(x_api_key:Union[str, None] = Header(default=None), file:UploadF
 
     try:
         data = await file.read()
-        file_id = generate_id()
+        file_id = generate_id(6)
 
         from mutler import Mutler
         from controllers.file import _upload_file

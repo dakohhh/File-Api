@@ -1,6 +1,6 @@
-from database import conn, cursor
+from database import cursor
 from func import does_email_exist, get_user_id
-from auth_pass import checkPassword, hashPassword
+from .auth_pass import checkPassword
 
 
 

@@ -11,7 +11,7 @@ message = Mail(
     subject='WISHARE API VERIFICATION',
     html_content='<strong></strong>')
 try:
-    sg = SendGridAPIClient("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")
+    sg = SendGridAPIClient(os.environ.get("SENDGRID_API_KEY"))
     response = sg.send(message)
     print(response.status_code)
     print(response.body)

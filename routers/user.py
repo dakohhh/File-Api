@@ -20,14 +20,17 @@ async def signup(fullname=Form(), email= Form(), password= Form()):
     if does_email_exist(email):
         raise UserExistExecption("Email already exists")
     
-    create_user(fullname, email, password)
+    try:
+        create_user(fullname, email, password)
     
     
-    return customResponse(
-            HTTP_200_OK, 
-            "Account created, please verify account", 
-            data= {"verification_id": await get_vid(email)}
-            )
+        return customResponse(
+                HTTP_200_OK, 
+                "Account created, please verify account", 
+                data= {"verification_id": await get_vid(email)}
+                )
+    except:
+        raise ServerErrorException("Server Error")
 
 
 
